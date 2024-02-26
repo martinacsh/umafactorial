@@ -1,0 +1,122 @@
+comandos_git
+
+Tras crear el repositorio en mi cuenta gitHub, desde el terminal de visual studio utilizo
+el comando clone para crear y guardar un repositorio idéntico en el directorio en el que
+estoy trabajando en mi máquina.
+
+item_1 - git clone https://github.com/martinacsh/umafactorial.git
+
+A continuación, queremos guardar nuestro progreso en el repositorio. Para ello, primero
+utilizamos el commando add con el nombre del archivo modificado. De  esta forma, se han 
+añadido los cambios en ese archivo al staging area, así git sabe qué cambios vas a 
+incluir en el nuevo commit.
+
+item_3 - git add factorial.java
+
+Ahora podemos hacer el commit, así se crea una nueva versión del repositorio de forma 
+permanente que incluirá los contenidos existentes junto con las modificaciones y un breve
+mensaje descriptivo.
+
+item_3 - git commit -m "implamentacion inicial"
+
+En este paso hemos hecho una modificación de la implementación del cálculo del factorial, 
+hacemos otro commit para guardar esta nueva versión con el mensaje "refactorizacion"
+
+item_4 - git add factorial.java
+item_4 - git commit -m "refactorizacion"
+
+A continuación, se publica el software en gitHub, para ello se utilizará el comando push 
+con el nombre del repositorio y la rama en la que se esté trabajando. Con este comando, 
+se toman los cambios del repositorio de la máquina local y se transfieren al repositorio
+en GitHub para que (en caso de que sea público) todos los participantes puedan acceder
+a tus modificaciones.
+
+item_5 - git push origin main
+
+Ahora, se realizará una implementación iterativa, para no afectar al código de la rama 
+principal, se creará una rama nueva donde se continuará trabajando. Esta nueva rama será una 
+copia exacta que el último commit que hayamos realizado en la principal o main. Tras crearla, 
+se cambiará el espacio de trabajo a ella, para proseguir con las modificaciones. A partir de 
+este punto, se guardarán en nuevas versiones independientes de la main.
+
+item_5 - git checkout –b recursivo
+
+Tras hacer otra pequeña modificación al fichero, lo siguiente es hacer un commit para guardar 
+los cambios y subir la rama a gitHub para que la implementación pueda ser inspeccionada. 
+Igual que antes, se deben utilizar los comandos add, commit y push.
+
+item_7 - git add factorial.java
+git commit -m "implementacion recursiva"
+git push origin recursivo
+
+Ahora, se debe realizar una modificación en el código de la rama principal, cambiamos nuestro
+entorno de trabajo a esta.
+
+item_8 - git checkout main
+
+Los cambios realizados se guardarán haciendo un add del archivo modificado, luego un commit
+con su correspondiente mensaje informativo y un push para publicar los cambios en gitHub.
+
+item_10 - git add factorial.java
+git commit -m "correcion numeros negativos"
+git push origin main
+
+A continuación, se optimizará el código de la rama "recursivo", para ello se cambiará el 
+entorno de trabajo a dicha rama, se modificará, y se guardarán los cambios con add y commit.
+
+item_11 git checkout recursivo
+git add factorial.java
+git commit -m "optimizacion"
+
+El código de la rama recursivo está listo para los clientes, se añadirán los cambios a la rama 
+main. La nueva versión que obtengamos incluirá todo el progreso de la rama main mas el de la
+recursiva. Primero nos cambiamos a la rama main y luego las fusionamos.
+
+item_12 git checkout main
+git merge recursivo
+
+Ahora se creará una nueva rama y se cambiará el espacio de trabajo a ella, ambas acciones 
+pueden completarse en un solo comando igual que antes:
+
+item_13 git checkout -b refacIO
+
+Tras modificarla, se añadirá y se hará un commit de dicha rama:
+
+item_14 - git add factorial.java
+git commit -m "refactorizacion de metodo de entrada"
+
+Ahora se tienen que realizar unos cambios en el main inmediatamente. Se utilizará el comando
+stash, que guarda de forma temporal las modificaciones realizadas en la versión, de forma que 
+no pierdo el progreso pero tampoco se crea una nueva como con el commit, ya que no está acabada.
+Luego se cambia el entorno de trabajo al main.
+
+item_15 - git stash
+git checkout main
+
+Las modificaciones hechas en la rama main se añadirán con un commit y se publicarán los cambios
+al repositorio remoto en Github. En este commit sólo aparecerán las modificaciones pero los
+avances completados en la otra rama se podrán recuperar con el comando git stash pop. Primero
+se cambia el espacio de trabajo a la rama refacIO Una vez y, una vez se hayan recuperado los 
+cambios, se añadirán con un commit.
+
+item_16 - git add factorial.java
+git commit -m "cambio de long a BigInteger"
+git push origin main
+git checkout refacIO
+git stash pop
+git add factorial.java
+git commit -m "refactorizacion de metodo de salida"
+
+Ahora, se cambia el entorno de trabajo a la rama main para mezclar las modificaciones de la 
+rama refacIO.
+
+item_17 - git checkout main
+git merge refacIO
+
+Nos dará un error mostrando que existe un conflicto, se resuelve.
+
+Una vez resuelto, se añaden los cambios en un commit y se suben a Github.
+
+item_19 - git add factorial.java
+git commit -m "Mezcla de rama refacIO"
+git push origin main
