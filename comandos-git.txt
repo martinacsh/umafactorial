@@ -120,3 +120,11 @@ Una vez resuelto, se añaden los cambios en un commit y se suben a Github.
 item_19 - git add factorial.java
 git commit -m "Mezcla de rama refacIO"
 git push origin main
+
+item_21 - git add comandos-git.txt
+git commit -m "adicion historial linea de comandos"
+git push origin main
+
+Para sincronizar todas las ramas del repositorio local con el remoto, utilizo el siguiente comando:
+
+item_22 - git push --all origin
